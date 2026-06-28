@@ -1,0 +1,26 @@
+{
+  "rules": [
+    {
+      "name": "VIP clients",
+      "match": {"from_contains": ["vip@example.com"], "subject_contains": []},
+      "system_prompt": "You are a professional assistant. Reply warmly and helpfully. Keep replies under 150 words.",
+      "priority": 1
+    },
+    {
+      "name": "Support requests",
+      "match": {"from_contains": [], "subject_contains": ["help", "support", "issue", "problem", "error"]},
+      "system_prompt": "You are a friendly customer support agent. Acknowledge the issue and offer a solution.",
+      "priority": 2
+    },
+    {
+      "name": "Default fallback",
+      "match": {"from_contains": [], "subject_contains": []},
+      "system_prompt": "You are a professional email assistant. Write a polite, concise reply to the email below.",
+      "priority": 99
+    }
+  ],
+  "blacklist": {
+    "from_contains": ["noreply@", "no-reply@", "donotreply@", "mailer-daemon@"],
+    "subject_contains": ["unsubscribe", "out of office", "auto-reply", "automatic reply"]
+  }
+}
